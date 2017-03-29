@@ -1,9 +1,10 @@
 <?php
 
 // Get drupal translation files.
-require_once "/Users/geoff/sites/flat/drupal-7.53/includes/iso.inc";
+//require_once "/Users/geoff/sites/flat/drupal-7.53/includes/iso.inc";
+require_once "/Users/geoff/sites/backdrop/core/includes/standard.inc";
 
-$language_list = _locale_get_predefined_list();
+$language_list = standard_language_list();
 
 foreach ($language_list as $key => $l) {
   print "\t$key\n";
