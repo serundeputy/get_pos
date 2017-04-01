@@ -13,16 +13,28 @@
 // Drupal path.
 $drupal_path = "/Users/geoff/sites/flat/drupal-7.53";
 
-// Get drupal translation files.
+// Get Drupal translation languages.
 require_once "$drupal_path/includes/iso.inc";
-
 $language_list = _locale_get_predefined_list();
 
-passthru("mkdir -p lang-files");
+// Determine what project you are getting the translation files for, i.e.
+// Drupal, views, etc.  Default to Drupal.
+$project = readline("\n\tEnter the project name (like drupal or views): ");
+$project = strtolower($project);
+if ($project == '' || $project == NULL) {
+  $project = 'drupal';
+}
+$version = readline("\n\tEnter the versio of the project (like 7.53 or 7.x-3.0-alpha1): ");
+$version = strtolower($version);
+if ($version == '' || $version == NULL) {
+  $version = '7.54';
+}
+
+passthru("mkdir -p lang-files/$project-$version");
 
 foreach ($language_list as $key => $l) {
   print "\t$key\n";
-  passthru("wget --directory-prefix=lang-files https://ftp.drupal.org/files/translations/7.x/drupal/drupal-7.54.$key.po");
+  passthru("wget --directory-prefix=lang-files/$project-$version https://ftp.drupal.org/files/translations/7.x/$project/$project-$version.$key.po");
 }
-$count = exec("ls lang-files/*.po -1 | wc -l");
+$count = exec("ls lang-files/$project-$version/*.po -1 | wc -l");
 print "\n\n\tdone: $count files downloaded.\n\n";
