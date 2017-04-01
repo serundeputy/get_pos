@@ -10,12 +10,25 @@
  * Usage: php get_pos.php
  */
 
+// iso.inc needs this definition.
+define('LANGUAGE_RTL', 1);
+
 // Drupal path.
 $drupal_path = "/Users/geoff/sites/flat/drupal-7.53";
 
 // Get Drupal translation languages.
 require_once "$drupal_path/includes/iso.inc";
 $language_list = _locale_get_predefined_list();
+
+// There are some languages misssing from iso.inc
+// @see https://github.com/serundeputy/get_pos/issues/1
+$missing = array(
+  'tvy' => array(0 => 'Tuvan'),
+  'prs' => array(0 => 'Afghanistan Persian'),
+);
+foreach ($missing as $key => $m) {
+  $language_list[$key] = $m;
+}
 
 // Determine what project you are getting the translation files for, i.e.
 // Drupal, views, etc.  Default to Drupal.
