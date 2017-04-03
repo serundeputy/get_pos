@@ -23,7 +23,7 @@ $language_list = _locale_get_predefined_list();
 // There are some languages misssing from iso.inc
 // @see https://github.com/serundeputy/get_pos/issues/1
 $missing = array(
-  'tvy' => array(0 => 'Tuvan'),
+  'tyv' => array(0 => 'Tuvan'),
   'prs' => array(0 => 'Afghanistan Persian'),
 );
 foreach ($missing as $key => $m) {
