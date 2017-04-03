@@ -37,7 +37,7 @@ $project = strtolower($project);
 if ($project == '' || $project == NULL) {
   $project = 'drupal';
 }
-$version = readline("\n\tEnter the versio of the project (like 7.53 or 7.x-3.0-alpha1): ");
+$version = readline("\n\tEnter the version of the project (like 7.53 or 7.x-3.0-alpha1): ");
 $version = strtolower($version);
 if ($version == '' || $version == NULL) {
   $version = '7.54';
